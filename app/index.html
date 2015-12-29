@@ -4,15 +4,7 @@
     <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="./style.css">
     <style>
-        #background {
-            -webkit-filter: blur(2px);
-            position: absolute;
-            top: 0px;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("images/background.jpg");
-        }
+
     </style>
 </head>
 <body>
@@ -20,20 +12,38 @@
 <div class="col-xs-12" style="height:120px; background:black; opacity: 0.45">
     <h1 class="text-center" style="color: white; padding-top:20px">Music App</h1>
 </div>
-<div class="col-xs-12" id="controller-1" style="height: 120px; background:black; position: absolute; bottom: 0px">
-    <span id="previous" class="glyphicon glyphicon-step-backward"></span>
+<div class="col-xs-12" id="music-toolbar" style="">
+    <span id="previous" class="music-button-control glyphicon glyphicon-step-backward"></span>
+    <span id="next" class="music-button-control glyphicon glyphicon-step-forward"></span>
+    <span id="repeat" class="music-button-control glyphicon glyphicon-retweet "></span>
+    <span id="pause" class="music-button-control glyphicon glyphicon-pause"></span>
+    <span id="play" class="music-button-control glyphicon glyphicon-play"></span>
 </div>
 <div class="container">
-    <audio controls>
+    <div id="music-progress">
+        <input type="text" value="0" class="dial">
+    </div>
+    <audio controls style="visibility:hidden">
         <source src="../../Music/Ung Hoang Phuc/ViMotNguoiRaDi-UngHoangPhuc_45937.mp3" type="audio/mpeg">
     </audio>
-    <button class="btn" id="loop">loop</button>
 </div>
 
 <script src="./bower_components/jquery/dist/jquery.js"></script>
+<script src="./bower_components/jQuery-Knob-master/js/jquery.knob.js"></script>
 <script src="./bower_components/moment/moment.js"></script>
 <script src="./bower_components/underscore/underscore.js"></script>
 <script src="./bower_components/sprintf/src/sprintf.js"></script>
 <script src="./script.js"></script>
+
+<script>
+    $(function () {
+        $(".dial").knob({
+            'fgColor': '#DF193C',
+            'width': '400',
+            'height': '400',
+            'displayInput': false
+        });
+    });
+</script>
 </body>
 </html>
