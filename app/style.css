@@ -1,0 +1,11 @@
+#previous {
+    font-size: 50px;
+    color: #D0D0D0;
+    position: absolute;
+    top: 30px;
+    left: 600px;
+}
+
+#previous:hover {
+    color: white;
+}
