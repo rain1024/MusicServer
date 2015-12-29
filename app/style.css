@@ -38,17 +38,38 @@
     left: 50%;
 }
 
-#repeat {
+#repeat-none {
     font-size: 50px;
     position: absolute;
     top: 30px;
     left: 20%;
+}
 
+#repeat-all {
+    font-size: 50px;
+    position: absolute;
+    top: 30px;
+    left: 20%;
+    color: #DF193C;
+}
+
+#repeat-one span {
+    font-size: 50px;
+    position: absolute;
+    top: 30px;
+    left: 20%;
+    color: #DF193C;
+}
+
+#repeat-one #one {
+    font-size: 16px;
+    top: 45px;
+    left: 21.2%;
 }
 
 #music-progress {
     position: absolute;
-    top: 200px;
+    top: 300px;
     left: 40%;
 }
 
@@ -58,6 +79,7 @@
 
 .music-button-control:hover {
     color: white;
+    cursor: pointer;
 }
 
 #music-toolbar {

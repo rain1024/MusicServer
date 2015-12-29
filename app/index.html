@@ -10,12 +10,25 @@
 <body>
 <div id="background"></div>
 <div class="col-xs-12" style="height:120px; background:black; opacity: 0.45">
-    <h1 class="text-center" style="color: white; padding-top:20px">Music App</h1>
+    <h1 class="text-center" style="color: white; padding-top:20px">MuDa</h1>
 </div>
 <div class="col-xs-12" id="music-toolbar" style="">
-    <span id="previous" class="music-button-control glyphicon glyphicon-step-backward"></span>
-    <span id="next" class="music-button-control glyphicon glyphicon-step-forward"></span>
-    <span id="repeat" class="music-button-control glyphicon glyphicon-retweet "></span>
+    <div id="previous" class="music-button-control">
+        <span class="glyphicon glyphicon-step-backward"></span>
+    </div>
+    <div id="next" class="music-button-control ">
+        <span class="glyphicon glyphicon-step-forward"></span>
+    </div>
+    <div id="repeat-none" class="music-button-control">
+        <span class="glyphicon glyphicon-retweet"></span>
+    </div>
+    <div id="repeat-all" class="music-button-control">
+        <span class="glyphicon glyphicon-retweet"></span>
+    </div>
+    <div id="repeat-one" class="music-button-control">
+        <span class="glyphicon glyphicon-retweet"></span>
+        <span id="one">1</span>
+    </div>
     <span id="pause" class="music-button-control glyphicon glyphicon-pause"></span>
     <span id="play" class="music-button-control glyphicon glyphicon-play"></span>
 </div>
@@ -34,17 +47,5 @@
 <script src="./bower_components/underscore/underscore.js"></script>
 <script src="./bower_components/sprintf/src/sprintf.js"></script>
 <script src="./script.js"></script>
-
-<script>
-    MusicUI = null;
-    $(function () {
-        MusicUI = $(".dial").knob({
-            'fgColor': '#DF193C',
-            'width': '400',
-            'height': '400',
-            'displayInput': false
-        });
-    });
-</script>
 </body>
 </html>
