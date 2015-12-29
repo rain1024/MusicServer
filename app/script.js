@@ -3,7 +3,6 @@
  * Created by rain on 12/29/2015.
  */
 
-// TODO: progressbar
 
 var audio = $("audio")[0];
 var playlist = [
@@ -12,6 +11,20 @@ var playlist = [
   "../../Music/ToiChoCoGaiDo-KhacViet-4098613.mp3",
   "../../Music/EmLamGiToiNay-KhacViet-3602418.mp3"
 ];
+
+$(function () {
+
+  var MusicUI = $(".dial").knob({
+    'fgColor': '#DF193C',
+    'width': '400',
+    'height': '400',
+    'displayInput': false,
+
+    change: function(value){
+      $("audio")[0].currentTime = value / 100 * audio.duration;
+    }
+  });
+});
 
 MusicRepository = {
   current: 0,
@@ -26,7 +39,7 @@ MusicRepository = {
     return playlist[this.current];
   },
 
-  getCurrent: function(){
+  getCurrent: function () {
     return playlist[this.current];
   }
 };
@@ -38,7 +51,7 @@ MusicPlayer = {
 
   play: function (link) {
     this.isPlay = true;
-    if(!link){
+    if (!link) {
       link = MusicRepository.getCurrent();
     }
     $("audio").attr("src", link);
@@ -66,7 +79,7 @@ var updateAudio = function () {
   var value = Math.floor((100 / audio.duration) * audio.currentTime);
   $('.dial').val(value).trigger('change');
   // update status
-  if(MusicPlayer.isPlay){
+  if (MusicPlayer.isPlay) {
     $("#play").hide();
     $("#pause").show();
   } else {
@@ -76,8 +89,9 @@ var updateAudio = function () {
 };
 $("#previous").click(MusicPlayer.previous);
 $("#next").click(MusicPlayer.next);
-$("#play").click(function(){
+$("#play").click(function () {
   MusicPlayer.play();
 });
-updateAudio();
+
+
 setInterval(updateAudio, 1000);
