@@ -89,8 +89,14 @@ MusicPlayer = {
 
   player: $("audio")[0],
 
+  pause: function(){
+    MusicPlayer.isPlay = false;
+    $("audio")[0].pause();
+  },
+
   play: function (link) {
     this.isPlay = true;
+    $("audio")[0].pause();
     if (!link) {
       link = MusicRepository.getCurrent().link;
     }
@@ -194,6 +200,10 @@ $("#previous").click(MusicPlayer.previous);
 $("#next").click(MusicPlayer.next);
 $("#play").click(function () {
   MusicPlayer.play();
+});
+
+$("#pause").click(function () {
+  MusicPlayer.pause();
 });
 
 $("#repeat-one").click(function(){
