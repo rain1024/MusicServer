@@ -1,6 +1,7 @@
 <html>
 <head>
-    <title>Muda</title>
+    <title>MUda</title>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="./style.css">
     <style>
@@ -9,9 +10,12 @@
 </head>
 <body>
 <div id="background"></div>
-<div class="col-xs-12" style="height:120px; background:black; opacity: 0.45">
-    <h1 class="text-center" style="color: white; padding-top:20px">MuDa</h1>
+<div class="ontop">
+    <h1 id="title" class="text-center"></h1>
+    <h3 id="author" class="text-center"></h3>
 </div>
+<div class="info-background col-xs-12"></div>
+
 <div class="col-xs-12" id="music-toolbar" style="">
     <div id="previous" class="music-button-control">
         <span class="glyphicon glyphicon-step-backward"></span>
@@ -29,12 +33,19 @@
         <span class="glyphicon glyphicon-retweet"></span>
         <span id="one">1</span>
     </div>
+    <div id="random-active" class="music-button-control">
+        <span class="glyphicon glyphicon-random"></span>
+    </div>
+    <div id="random-deactive" class="music-button-control">
+        <span class="glyphicon glyphicon-random"></span>
+    </div>
     <span id="pause" class="music-button-control glyphicon glyphicon-pause"></span>
     <span id="play" class="music-button-control glyphicon glyphicon-play"></span>
 </div>
 <div class="container">
     <div id="music-progress">
         <input type="text" value="0" class="dial">
+        <div id="text-progress">20</div>
     </div>
     <audio controls style="visibility:hidden">
         <source src="../../Music/Ung Hoang Phuc/ViMotNguoiRaDi-UngHoangPhuc_45937.mp3" type="audio/mpeg">

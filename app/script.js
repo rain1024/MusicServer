@@ -3,20 +3,26 @@
  * Created by rain on 12/29/2015.
  */
 
-// TODO: random
-
 var audio = $("audio")[0];
 var playlist = [
   {
+    "title": "Dễ Thương",
+    "author": "Khởi My",
     "link": "../../Music/DeThuong-KhoiMy-3787783.mp3",
   },
   {
+    "title": "Đến Sau",
+    "author": "Ưng Hoàng Phúc",
     "link": "../../Music/DenSau-AnhKiet-UngHoangPhuc_3ev3h.mp3",
   },
   {
+    "title": "Tội Cho Cô Gái Đó",
+    "author": "Khắc Việt",
     "link": "../../Music/ToiChoCoGaiDo-KhacViet-4098613.mp3",
   },
   {
+    "title": "Em Làm Gì Tối Nay",
+    "author": "Khắc Việt",
     "link": "../../Music/EmLamGiToiNay-KhacViet-3602418.mp3"
   }
 ];
@@ -40,16 +46,21 @@ MusicRepository = {
 
   getPrevious: function () {
     this.current = (this.current + playlist.length - 1) % playlist.length;
-    return playlist[this.current].link;
+    return playlist[this.current];
   },
 
   getNext: function () {
     this.current = (this.current + 1) % playlist.length;
-    return playlist[this.current].link;
+    return playlist[this.current];
   },
 
   getCurrent: function () {
-    return playlist[this.current].link;
+    return playlist[this.current];
+  },
+
+  getRandom: function(){
+    this.current = Math.floor((Math.random() * playlist.length));
+    return playlist[this.current];
   }
 };
 REPEAT_STATUS = {
@@ -76,35 +87,47 @@ MusicPlayer = {
   play: function (link) {
     this.isPlay = true;
     if (!link) {
-      link = MusicRepository.getCurrent();
+      link = MusicRepository.getCurrent().link;
     }
     $("audio").attr("src", link);
+    console.log("Play ", link);
     $("audio")[0].play();
   },
 
   previous: function () {
     var link;
-    if(MusicPlayer.repeatStatus == REPEAT_STATUS.ONE){
-      link = MusicRepository.getCurrent();
-    } else {
-      link = MusicRepository.getPrevious();
+    var song;
+    if(MusicPlayer.isRandom){
+      song = MusicRepository.getRandom();
     }
+    if(MusicPlayer.repeatStatus == REPEAT_STATUS.ONE){
+      song = MusicRepository.getCurrent();
+    } else {
+      song = MusicRepository.getPrevious();
+    }
+    link = song.title;
     MusicPlayer.play(link);
   },
 
   next: function () {
+    var song;
     var link;
-    if(MusicPlayer.repeatStatus == REPEAT_STATUS.ONE){
-      link = MusicRepository.getCurrent();
-    } else {
-      link = MusicRepository.getNext();
+    if(MusicPlayer.isRandom){
+      song = MusicRepository.getRandom();
     }
+    if(MusicPlayer.repeatStatus == REPEAT_STATUS.ONE){
+      song = MusicRepository.getCurrent();
+    } else {
+      song = MusicRepository.getNext();
+    }
+    link = song.link;
     MusicPlayer.play(link);
   }
 };
 
 audio.addEventListener('ended', function (e) {
-  var link = MusicRepository.getNext();
+  var song = MusicRepository.getNext();
+  var link = song.link;
   MusicPlayer.play(link);
 });
 
@@ -138,7 +161,30 @@ var updateAudio = function () {
     $("#repeat-all").hide();
     $("#repeat-one").show();
   }
+
+  if(MusicPlayer.isRandom){
+    $("#random-deactive").hide();
+    $("#random-active").show();
+  }
+
+  if(!MusicPlayer.isRandom){
+    $("#random-active").hide();
+    $("#random-deactive").show();
+  }
+
+  $("#title").text(MusicRepository.getCurrent().title);
+  $("#author").text(MusicRepository.getCurrent().author);
+
+  try {
+    var current_minute = (audio.currentTime / 60);
+    var current_second = (audio.currentTime % 60);
+    var duration_minute = (audio.duration / 60);
+    var duration_second = (audio.duration % 60);
+    var textProgress = sprintf("%02d:%02d | %02d:%02d", current_minute, current_second, duration_minute, duration_second);
+    $("#text-progress").text(textProgress);
+  } catch(e){ };
 };
+
 $("#previous").click(MusicPlayer.previous);
 $("#next").click(MusicPlayer.next);
 $("#play").click(function () {
@@ -155,6 +201,14 @@ $("#repeat-none").click(function(){
 
 $("#repeat-all").click(function(){
   MusicPlayer.repeatStatus = REPEAT_STATUS.ONE;
+});
+
+$("#random-active").click(function(){
+  MusicPlayer.isRandom = false;
+});
+
+$("#random-deactive").click(function(){
+  MusicPlayer.isRandom = true;
 });
 
 updateAudio();
