@@ -80,6 +80,8 @@ MusicPlayer = {
 
   isRandom: false,
 
+  isPausePress: false,
+
   /**
    * 0: none
    * 1: all
@@ -91,17 +93,22 @@ MusicPlayer = {
 
   pause: function(){
     MusicPlayer.isPlay = false;
+    MusicPlayer.isPausePress = true;
     $("audio")[0].pause();
   },
 
   play: function (link) {
-    this.isPlay = true;
-    $("audio")[0].pause();
-    if (!link) {
-      link = MusicRepository.getCurrent().link;
+    if(MusicPlayer.isPausePress){
+      MusicPlayer.isPausePress = false;
+    } else {
+      this.isPlay = true;
+      $("audio")[0].pause();
+      if (!link) {
+        link = MusicRepository.getCurrent().link;
+      }
+      $("audio").attr("src", link);
+      console.log("Play ", link);
     }
-    $("audio").attr("src", link);
-    console.log("Play ", link);
     $("audio")[0].play();
   },
 
@@ -189,8 +196,14 @@ var updateAudio = function () {
   try {
     var current_minute = (audio.currentTime / 60);
     var current_second = (audio.currentTime % 60);
-    var duration_minute = (audio.duration / 60);
-    var duration_second = (audio.duration % 60);
+    var duration_minute, duration_second;
+    if(audio.duration > 0){
+      duration_minute = (audio.duration / 60);
+      duration_second = (audio.duration % 60);
+    } else {
+      duration_minute = 0;
+      duration_second = 0;
+    }
     var textProgress = sprintf("%02d:%02d | %02d:%02d", current_minute, current_second, duration_minute, duration_second);
     $("#text-progress").text(textProgress);
   } catch(e){ };
