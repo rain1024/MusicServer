@@ -1,2 +1,1 @@
-cd music
-python manage.py runserver 0.0.0.0:8484
+python music/manage.py runserver 0.0.0.0:8484
