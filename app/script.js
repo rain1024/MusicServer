@@ -4,6 +4,7 @@
  */
 
 var audio = $("audio")[0];
+
 var playlist = [
   {
     "title": "Dễ Thương",
@@ -19,14 +20,18 @@ var playlist = [
     "title": "Tội Cho Cô Gái Đó",
     "author": "Khắc Việt",
     "link": "../../Music/ToiChoCoGaiDo-KhacViet-4098613.mp3",
-  },
-  {
-    "title": "Em Làm Gì Tối Nay",
-    "author": "Khắc Việt",
-    "link": "../../Music/EmLamGiToiNay-KhacViet-3602418.mp3"
   }
 ];
 
+var serviceIP = "http://127.0.0.1";
+var servicePort = "8484";
+var serviceURL = sprintf("%s:%s/api", serviceIP, servicePort);
+$.get(sprintf("%s/songs/", serviceURL))
+  .then(function(data){
+    if(data){
+      playlist = data;
+    }
+  });
 $(function () {
 
   var MusicUI = $(".dial").knob({
@@ -105,7 +110,7 @@ MusicPlayer = {
     } else {
       song = MusicRepository.getPrevious();
     }
-    link = song.title;
+    link = song.link;
     MusicPlayer.play(link);
   },
 

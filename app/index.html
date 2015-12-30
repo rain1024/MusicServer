@@ -4,54 +4,57 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="./style.css">
-    <style>
-
-    </style>
+    <link rel="stylesheet" href="./playlist.css">
 </head>
 <body>
 <div id="background"></div>
-<div class="ontop">
-    <h1 id="title" class="text-center"></h1>
-    <h3 id="author" class="text-center"></h3>
-</div>
-<div class="info-background col-xs-12"></div>
 
-<div class="col-xs-12" id="music-toolbar" style="">
-    <div id="previous" class="music-button-control">
-        <span class="glyphicon glyphicon-step-backward"></span>
+<div id="playing">
+    <div class="ontop">
+        <h1 id="title" class="text-center"></h1>
+        <h3 id="author" class="text-center"></h3>
     </div>
-    <div id="next" class="music-button-control ">
-        <span class="glyphicon glyphicon-step-forward"></span>
-    </div>
-    <div id="repeat-none" class="music-button-control">
-        <span class="glyphicon glyphicon-retweet"></span>
-    </div>
-    <div id="repeat-all" class="music-button-control">
-        <span class="glyphicon glyphicon-retweet"></span>
-    </div>
-    <div id="repeat-one" class="music-button-control">
-        <span class="glyphicon glyphicon-retweet"></span>
-        <span id="one">1</span>
-    </div>
-    <div id="random-active" class="music-button-control">
-        <span class="glyphicon glyphicon-random"></span>
-    </div>
-    <div id="random-deactive" class="music-button-control">
-        <span class="glyphicon glyphicon-random"></span>
-    </div>
-    <span id="pause" class="music-button-control glyphicon glyphicon-pause"></span>
-    <span id="play" class="music-button-control glyphicon glyphicon-play"></span>
-</div>
-<div class="container">
-    <div id="music-progress">
-        <input type="text" value="0" class="dial">
-        <div id="text-progress">20</div>
-    </div>
-    <audio controls style="visibility:hidden">
-        <source src="../../Music/Ung Hoang Phuc/ViMotNguoiRaDi-UngHoangPhuc_45937.mp3" type="audio/mpeg">
-    </audio>
-</div>
+    <div id="playing-toolbar" class="info-background col-xs-12"></div>
 
+    <div class="col-xs-12" id="music-toolbar" style="">
+        <div id="previous" class="music-button-control">
+            <span class="glyphicon glyphicon-step-backward"></span>
+        </div>
+        <div id="next" class="music-button-control ">
+            <span class="glyphicon glyphicon-step-forward"></span>
+        </div>
+        <div id="repeat-none" class="music-button-control">
+            <span class="glyphicon glyphicon-retweet"></span>
+        </div>
+        <div id="repeat-all" class="music-button-control">
+            <span class="glyphicon glyphicon-retweet"></span>
+        </div>
+        <div id="repeat-one" class="music-button-control">
+            <span class="glyphicon glyphicon-retweet"></span>
+            <span id="one">1</span>
+        </div>
+        <div id="random-active" class="music-button-control">
+            <span class="glyphicon glyphicon-random"></span>
+        </div>
+        <div id="random-deactive" class="music-button-control">
+            <span class="glyphicon glyphicon-random"></span>
+        </div>
+        <span id="pause" class="music-button-control glyphicon glyphicon-pause"></span>
+        <span id="play" class="music-button-control glyphicon glyphicon-play"></span>
+    </div>
+    <div class="container">
+        <div id="music-progress">
+            <input type="text" value="0" class="dial">
+            <div id="text-progress">20</div>
+        </div>
+        <audio controls style="visibility:hidden">
+            <source src="../../Music/Ung Hoang Phuc/ViMotNguoiRaDi-UngHoangPhuc_45937.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+</div>
+<div id="playlist hidden">
+    <div id="playlist-toolbar" class="info-background col-xs-12"></div>
+</div>
 <script src="./bower_components/jquery/dist/jquery.js"></script>
 <script src="./bower_components/jQuery-Knob-master/js/jquery.knob.js"></script>
 <script src="./bower_components/moment/moment.js"></script>
