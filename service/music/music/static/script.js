@@ -144,9 +144,7 @@ MusicPlayer = {
 };
 
 audio.addEventListener('ended', function (e) {
-  var song = MusicRepository.getNext();
-  var link = song.link;
-  MusicPlayer.play(link);
+  MusicPlayer.next();
 });
 
 var updateAudio = function () {
